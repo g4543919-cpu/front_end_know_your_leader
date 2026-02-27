@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import api from '../Api/axios';
-import { getCandidateById, getCandidateSummary } from '../Api/CandidateApi';
+import { electionResult, getCandidateById, getCandidateSummary } from '../Api/CandidateApi';
 import cand1 from '../Images/cand.jpg'
 
 export const CandidateId = () => {
@@ -12,8 +12,23 @@ export const CandidateId = () => {
     const [Candidate, setCandidate] = useState(null);
     const [Summary, setSummary] = useState(null);
     const [loadingSummary, setLoadingSummary] = useState(false);
-    const [celection,Setcelection] = useState(null);
+    const [celection,Setcelection] = useState([]);
     const  [loadingcelection,setloadingcelection] = useState(false);
+     const handleElectionresult = async (id)=>{
+      try{
+        setloadingcelection(true);
+        const data =  await electionResult(id);
+        Setcelection(data);
+        console.log(data);
+
+      }catch(error){
+  console.log("Error:", error);
+      
+      }finally {
+   setloadingcelection(false);
+}
+     }
+
     const handleSummary = async (id)=>{
       try{
         setLoadingSummary(true);
@@ -59,17 +74,18 @@ export const CandidateId = () => {
           src={Candidate.ImageUrl}
           alt="Candidate"
         />
-        <div className='flex gap-4'>
+        <div className='flex gap-4 flex-col'>
         <a href={`http://localhost:8081/api/candidate/profile/${id}`}>
           Download Profile
            </a>
            <p onClick={()=>handleSummary(id)}>Ai magic</p>
+           <p onClick={()=>handleElectionresult(id)} >Past Election</p>
            </div>
       </div>
 
       {/* Right Side Details */}
       <div className="flex-1 space-y-4">
-
+          
         <div>
           <h2 className="text-3xl font-semibold">{Candidate.name}</h2>
           <p className="text-gray-500">{Candidate.party}</p>
@@ -127,10 +143,37 @@ export const CandidateId = () => {
    
    {loadingcelection && <h1>Getting election....</h1>}
 
-   {celection && (
-    <div>
+   {celection.length > 0 && (
+  <div className="mt-8 w-[90%] max-w-6xl bg-white shadow-xl rounded-2xl overflow-hidden">
+
+    {/* Table Header */}
+    <div className="grid grid-cols-7 bg-gray-200 text-gray-700 font-semibold p-4 text-sm">
+      <div>Result Status</div>
+      <div>Votes Received</div>
+      <div>District</div>
+      <div>Constituency</div>
+      <div>State</div>
+      <div>Election Type</div>
+      <div>Year</div>
+    </div>
+
+    {/* Table Body */}
+    {celection.map((ele, i) => (
+      <div
+        key={i}
+        className="grid grid-cols-7 p-4 border-t hover:bg-gray-50 text-sm"
+      >
+        <div className="font-medium">{ele.resultStatus}</div>
+        <div>{ele.votesrecived}</div>
+        <div>{ele.district}</div>
+        <div>{ele.constituencyname}</div>
+        <div>{ele.state}</div>
+        <div>{ele.electionType}</div>
+        <div>{ele.year}</div>
       </div>
-   )}
+    ))}
+  </div>
+)}
   </div>
  
 </>

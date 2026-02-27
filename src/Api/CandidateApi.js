@@ -26,3 +26,7 @@ export const filter = async(name,party,state,constituency)=>{
     });
     return response.data;
 }
+export const electionResult = async(id)=>{
+    const response = await api.get(`/api/candidate/electionresult/${id}`);
+    return response.data;
+}
