@@ -8,7 +8,6 @@ export const CandidateId = () => {
 
     const{ id} =  useParams();
   
-    
     const [Candidate, setCandidate] = useState(null);
     const [Summary, setSummary] = useState(null);
     const [loadingSummary, setLoadingSummary] = useState(false);
