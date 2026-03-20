@@ -55,7 +55,7 @@ export const ALLPROFILE = () => {
           <div className="w-[120px] h-[120px] flex-shrink-0 bg-blue-500 rounded-lg overflow-hidden">
             <img
               className="w-full h-full object-cover"
-              src={e.ImageUrl}
+              src={e.imageUrl}
               alt={e.name}
             />
           </div>

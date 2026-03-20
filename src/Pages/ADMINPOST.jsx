@@ -6,9 +6,10 @@ import {
 } from "../Api/AdminApi";
 import { Button } from "../components/ui/button";
 
+
 export const ADMINPOST = () => {
 
-  /* ---------------- Candidate ---------------- */
+  /* Candidate  */
 
   const [name, setName] = useState("");
   const [dob, setdob] = useState("");
@@ -17,37 +18,37 @@ export const ADMINPOST = () => {
   const [party, setparty] = useState("");
   const [url, seturl] = useState("");
 
-  /* ---------------- Constituency ---------------- */
+  /* Constituency */
 
   const [ContituncyName, setContituncyName] = useState("");
   const [district, setdistrict] = useState("");
   const [state, setstate] = useState("");
 
-  /* ---------------- Election ---------------- */
+  /*Election*/
 
   const [year, setyear] = useState("");
   const [electionType, setelectionType] = useState("");
 
-  /* ---------------- Election Result ---------------- */
+  /* Election Result*/
 
   const [candidateId, setcandidateId] = useState("");
-  const [electionId, setelectionId] = useState("");
+  // const [electionId, setelectionId] = useState("");
   const [constituencyId, setContituncyId] = useState("");
 
   const [votesrecived, setvotesreceived] = useState("");
   const [resultStatus, SetresultStatus] = useState("");
 
-  /* ---------------- Assets ---------------- */
+  /* Assets*/
 
   const [declared_assets, setdeclared_assets] = useState("");
   const [declared_liabilities, setdeclared_liabilities] = useState("");
 
-  /* ---------------- Criminal Case ---------------- */
+  /*Criminal Case */
 
   const [case_description, setcase_description] = useState("");
   const [severityLevel, setSecurityLevel] = useState("");
 
-  /* ---------------- Candidate API ---------------- */
+  /*Candidate API -*/
 
   const HandleCandidate = async () => {
 
@@ -92,7 +93,9 @@ export const ADMINPOST = () => {
     const ElectionResultDto = {
 
       candidateId: Number(candidateId),
-      electionId: Number(electionId),
+      // electionId: Number(electionId),
+      electionType: electionType,
+      electionYear:year,
       constituencyId: Number(constituencyId),
 
       votes_received: Number(votesrecived),
@@ -122,11 +125,19 @@ export const ADMINPOST = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-center min-h-screen w-screen px-4 py-4 gap-4">
-
+    
+    <>
+    
+    <div className="flex flex-col  bg-gray-100  items-center min-h-screen w-full px-2 py-4 gap-4">
+    <div>
+      <h1 className="text-center font-bold bg-gray-100 ">Admin DashBoard</h1>
+      </div>
+      
+    
+     <div className="flex gap-4 w-full justify-center">
       {/* Candidate */}
 
-      <div className="bg-gray-500 p-4 h-auto w-[320px] text-white rounded">
+      <div className=" bg-white shadow-xl rounded-2xl p-4 h-[290px] w-[320px] text-black rounded">
 
         <h2 className="font-bold mb-2">Candidate</h2>
 
@@ -154,16 +165,18 @@ export const ADMINPOST = () => {
 
       </div>
 
-      {/* Election */}
+      {/* Election Result */}
 
-      <div className="bg-gray-500 p-4 h-auto w-[320px] text-white rounded">
+      <div className="bg-white shadow-xl rounded-2xl p-4 h-auto w-[320px] ">
 
-        <h2 className="font-bold mb-2">Election</h2>
+        <h2 className="font-bold mb-2">Election Result</h2>
 
-        <input className="input" type="number" placeholder="Year"
-          onChange={(e) => setyear(Number(e.target.value))} />
+        <input className="input" type="number" placeholder="Candidate ID"
+          onChange={(e) => setcandidateId(e.target.value)} />
 
-        <select className="input"
+        {/* <input className="input" type="number" placeholder="Election ID"
+          onChange={(e) => setelectionId(e.target.value)} /> */}
+         <select className="input"
           onChange={(e) => setelectionType(e.target.value)}>
 
           <option value="">Select Election Type</option>
@@ -171,24 +184,6 @@ export const ADMINPOST = () => {
           <option value="ASSEMBLY"> Assembly</option>
 
         </select>
-
-        <Button onClick={HandleElection}>
-          Submit Election
-        </Button>
-
-      </div>
-
-      {/* Election Result */}
-
-      <div className="bg-gray-500 p-4 h-auto w-[320px] text-white rounded">
-
-        <h2 className="font-bold mb-2">Election Result</h2>
-
-        <input className="input" type="number" placeholder="Candidate ID"
-          onChange={(e) => setcandidateId(e.target.value)} />
-
-        <input className="input" type="number" placeholder="Election ID"
-          onChange={(e) => setelectionId(e.target.value)} />
 
         <input className="input" type="number" placeholder="Constituency ID"
           onChange={(e) => setContituncyId(e.target.value)} />
@@ -204,17 +199,6 @@ export const ADMINPOST = () => {
           <option value="LOST">LOST</option>
 
         </select>
-
-        <Button onClick={HandleElectionResult}>
-          Submit Result
-        </Button>
-
-      </div>
-
-      {/* Assets */}
-
-      <div className="bg-gray-500 p-4 h-auto w-[320px] text-white rounded">
-
         <h2 className="font-bold mb-2">Assets</h2>
 
         <input className="input" type="number" placeholder="Declared Assets"
@@ -223,13 +207,7 @@ export const ADMINPOST = () => {
         <input className="input" type="number" placeholder="Declared Liabilities"
           onChange={(e) => setdeclared_liabilities(e.target.value)} />
 
-      </div>
-
-      {/* Criminal Case */}
-
-      <div className="bg-gray-500 p-4 h-auto w-[320px] text-white rounded">
-
-        <h2 className="font-bold mb-2">Criminal Case</h2>
+           <h2 className="font-bold mb-2">Criminal Case</h2>
 
         <input className="input" placeholder="Case Description"
           onChange={(e) => setcase_description(e.target.value)} />
@@ -244,8 +222,37 @@ export const ADMINPOST = () => {
 
         </select>
 
+        <Button onClick={HandleElectionResult}>
+          Submit Result
+        </Button>
+
+      </div>
       </div>
 
+      {/* Election */}
+
+      <div className="bg-white shadow-xl rounded-2xl p-4 h-auto w-[320px]  rounded flex flex-col gap-2">
+
+        <h2 className="font-bold mb-2">Election</h2>
+
+        <input className="input" type="number" placeholder="Year"
+          onChange={(e) => setyear(Number(e.target.value))} />
+
+        <select className="input"
+          onChange={(e) => setelectionType(e.target.value)}>
+
+          <option value="">Select Election Type</option>
+          <option value="LOK_SABHA">Lok_Sabha</option>
+          <option value="ASSEMBLY"> Assembly</option>
+
+        </select>
+
+        <Button className="w-[150px]" onClick={HandleElection}>
+          Submit Election
+        </Button>
+
+      </div>
     </div>
+    </>
   );
 };

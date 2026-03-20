@@ -70,7 +70,7 @@ export const CandidateId = () => {
       <div className="w-1/3 flex justify-center flex-col">
         <img
           className="w-64 h-64 rounded-2xl object-cover shadow-md"
-          src={Candidate.ImageUrl}
+          src={Candidate.imageUrl}
           alt="Candidate"
         />
         <div className='flex gap-4 flex-col'>

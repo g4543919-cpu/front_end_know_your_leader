@@ -9,11 +9,11 @@ import { ADMINPOST } from './Pages/ADMINPOST'
 function App() {
   return (
   <>   
-   <Routes>
+   {/* <Routes>
     <Route path='/' element ={<Home />} ></Route>
     <Route path='/candidate/:id' element ={<CandidateId />}></Route>
-   </Routes>
-   {/* <ADMINPOST></ADMINPOST> */}
+   </Routes> */}
+   <ADMINPOST></ADMINPOST>
 
   </>
   )
