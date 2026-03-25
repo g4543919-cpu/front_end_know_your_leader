@@ -5,15 +5,17 @@ import { Home } from './Pages/Home'
 import { CandidateId } from './Pages/CandidateId'
 import SearchBox from './Pages/SearchBox'
 import { ADMINPOST } from './Pages/ADMINPOST'
+import Login from './Pages/Login'
 
 function App() {
   return (
   <>   
-   {/* <Routes>
+   <Routes>
     <Route path='/' element ={<Home />} ></Route>
     <Route path='/candidate/:id' element ={<CandidateId />}></Route>
-   </Routes> */}
-   <ADMINPOST></ADMINPOST>
+    <Route path='/Login' element={<Login/>}></Route>
+   </Routes>
+   {/* <ADMINPOST></ADMINPOST> */}
 
   </>
   )
