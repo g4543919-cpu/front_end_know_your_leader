@@ -7,18 +7,20 @@ import SearchBox from './Pages/SearchBox'
 import { ADMINPOST } from './Pages/ADMINPOST'
 import Login from './Pages/Login'
 import protectedroute from './ProtectedRoute/protectedroute'
+import Table from './Pages/TablePage'
 
 function App() {
   return (
   <>   
-   <Routes>
+   {/* <Routes>
     <Route path='/' element ={<Home />} ></Route>
     <Route path='/candidate/:id' element ={<CandidateId />}></Route>
     <Route path='/Login' element={<Login/>}></Route>
     <Route path='/admin'element={<protectedroute>
       <ADMINPOST />
     </protectedroute>} />
-   </Routes>
+   </Routes> */}
+   <Table></Table>
  
 
   </>

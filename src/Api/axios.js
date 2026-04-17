@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8081"
+  baseURL: "knowyourleader-production.up.railway.app"
+  // http://localhost:8081
 });
 
 // Automatically attach token to every request
